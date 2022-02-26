@@ -1,17 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/booscaaa/structs/core/domain"
-)
+import "github.com/booscaaa/rtdd-golang/structs/adapter/http_service"
 
 func main() {
-	person, err := domain.NewPerson(1, "", 24)
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Println(person)
+	http_service.Run()
 }

@@ -1,9 +1,9 @@
 package personrepository
 
-import "github.com/booscaaa/rtdd-golang/microservices/gateway/core/domain"
+import "github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
 
-func (repository repository) Fetch() (*[]domain.Person, error) {
-	people := []domain.Person{}
+func (repository repository) Fetch() ([]*domain.Person, error) {
+	people := []*domain.Person{}
 
 	rows, err := repository.db.Query("SELECT id, name, age FROM person")
 	defer rows.Close()
@@ -25,8 +25,8 @@ func (repository repository) Fetch() (*[]domain.Person, error) {
 
 		person, _ := domain.NewPerson(idA, nameA, ageA)
 
-		people = append(people, *person)
+		people = append(people, person)
 	}
 
-	return &people, nil
+	return people, nil
 }

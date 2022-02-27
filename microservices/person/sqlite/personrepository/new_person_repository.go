@@ -3,7 +3,7 @@ package personrepository
 import (
 	"database/sql"
 
-	"github.com/booscaaa/rtdd-golang/microservices/gateway/core/domain"
+	"github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
 )
 
 type repository struct {

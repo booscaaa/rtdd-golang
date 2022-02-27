@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/booscaaa/rtdd-golang/microservices/gateway/gateway/adapter/sqlite/personrepository"
-	"github.com/booscaaa/rtdd-golang/microservices/gateway/gateway/core/personusecase"
-	"github.com/booscaaa/rtdd-golang/microservices/gateway/person/core/personusecase"
-	"github.com/booscaaa/rtdd-golang/microservices/gateway/person/sqlite"
-	"github.com/booscaaa/rtdd-golang/microservices/gateway/person/sqlite/personrepository"
 	"github.com/booscaaa/rtdd-golang/microservices/person/adapter/grpcservice/personservice"
+	"github.com/booscaaa/rtdd-golang/microservices/person/adapter/sqlite/personrepository"
 	"github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
+	"github.com/booscaaa/rtdd-golang/microservices/person/core/personusecase"
+	"github.com/booscaaa/rtdd-golang/microservices/person/person/core/personusecase"
+	"github.com/booscaaa/rtdd-golang/microservices/person/person/sqlite"
+	"github.com/booscaaa/rtdd-golang/microservices/person/person/sqlite/personrepository"
 	"google.golang.org/grpc"
 )
 

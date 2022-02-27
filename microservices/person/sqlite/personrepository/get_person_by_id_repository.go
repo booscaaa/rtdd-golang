@@ -1,6 +1,6 @@
 package personrepository
 
-import "github.com/booscaaa/rtdd-golang/microservices/gateway/core/domain"
+import "github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
 
 func (repository repository) GetByID(id int) (*domain.Person, error) {
 	var idA int32

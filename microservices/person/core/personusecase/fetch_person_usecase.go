@@ -1,8 +1,8 @@
 package personusecase
 
-import "github.com/booscaaa/rtdd-golang/microservices/gateway/core/domain"
+import "github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
 
-func (usecase usecase) Fetch() (*[]domain.Person, error) {
+func (usecase usecase) Fetch() ([]*domain.Person, error) {
 	people, err := usecase.repository.Fetch()
 
 	if err != nil {

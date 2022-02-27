@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package productservice;
 
-option go_package = "adapter/grpcservice/proto";
+option go_package = "person/core/domain";
 
 service PersonService {
     rpc Fetch (FetchRequest) returns (FetchResponse);

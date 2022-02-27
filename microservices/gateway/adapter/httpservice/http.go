@@ -4,17 +4,19 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/booscaaa/rtdd-golang/microservices/gateway/adapter/sqlite"
-	"github.com/booscaaa/rtdd-golang/microservices/gateway/di"
+	"github.com/booscaaa/rtdd-golang/microservices/gateway/adapter/httpservice/personservice"
 	"github.com/gorilla/mux"
+	"google.golang.org/grpc"
 )
 
 // Run .
 func Run() {
-	db := sqlite.GetConnection()
-	sqlite.ConfigConnection(db)
+	conn, _ := grpc.Dial(
+		"localhost:1111",
+		grpc.WithInsecure(),
+	)
 
-	personService := di.ConfigPersonServiceInjection(db)
+	personService := personservice.NewPersonService(conn)
 
 	router := mux.NewRouter()
 

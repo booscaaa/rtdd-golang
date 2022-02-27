@@ -6,10 +6,10 @@ option go_package = "person/core/domain";
 
 service PersonService {
     rpc Fetch (FetchRequest) returns (FetchResponse);
+    rpc GetByID (GetByIDRequest) returns (GetByIDResponse);
 }
 
-message FetchRequest {
-}
+message FetchRequest {}
 
 message FetchResponse {
     repeated Person People = 1;
@@ -19,4 +19,12 @@ message Person {
     int32 id = 1;
     string name = 2;
     int32 age = 3;
+}
+
+message GetByIDRequest {
+    int32 id = 1;
+}
+
+message GetByIDResponse {
+    Person Person = 1;
 }

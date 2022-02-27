@@ -1,7 +1,6 @@
 package domain
 
 import (
-	context "context"
 	"fmt"
 )
 
@@ -29,14 +28,12 @@ func NewPerson(id int32, name string, age int32) (*Person, error) {
 	return &person, nil
 }
 
-type PersonService interface {
-	Fetch(context context.Context, request *FetchRequest) (*FetchResponse, error)
-}
-
 type PersonUseCase interface {
 	Fetch() ([]*Person, error)
+	GetByID(id int32) (*Person, error)
 }
 
 type PersonRepository interface {
 	Fetch() ([]*Person, error)
+	GetByID(id int32) (*Person, error)
 }

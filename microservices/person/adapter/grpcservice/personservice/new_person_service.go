@@ -12,7 +12,7 @@ type service struct {
 }
 
 // NewPersonService .
-func NewPersonService(usecase domain.PersonUseCase) domain.PersonService {
+func NewPersonService(usecase domain.PersonUseCase) domain.PersonServiceServer {
 	return &service{
 		usecase: usecase,
 	}
@@ -29,4 +29,17 @@ func (service service) Fetch(
 	}
 
 	return &domain.FetchResponse{People: people}, nil
+}
+
+func (service service) GetByID(
+	context context.Context,
+	request *domain.GetByIDRequest,
+) (*domain.GetByIDResponse, error) {
+	person, err := service.usecase.GetByID(request.Id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &domain.GetByIDResponse{Person: person}, nil
 }

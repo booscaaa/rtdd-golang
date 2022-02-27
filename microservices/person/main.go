@@ -5,12 +5,10 @@ import (
 	"net"
 
 	"github.com/booscaaa/rtdd-golang/microservices/person/adapter/grpcservice/personservice"
+	"github.com/booscaaa/rtdd-golang/microservices/person/adapter/sqlite"
 	"github.com/booscaaa/rtdd-golang/microservices/person/adapter/sqlite/personrepository"
 	"github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
 	"github.com/booscaaa/rtdd-golang/microservices/person/core/personusecase"
-	"github.com/booscaaa/rtdd-golang/microservices/person/person/core/personusecase"
-	"github.com/booscaaa/rtdd-golang/microservices/person/person/sqlite"
-	"github.com/booscaaa/rtdd-golang/microservices/person/person/sqlite/personrepository"
 	"google.golang.org/grpc"
 )
 
@@ -29,7 +27,7 @@ func main() {
 	personService := personservice.NewPersonService(personUseCase)
 	grpcServer := grpc.NewServer()
 
-	domain.RegisterPersonServiceServer(grpcServer, &personService)
+	domain.RegisterPersonServiceServer(grpcServer, personService)
 
 	if err := grpcServer.Serve(lis); err != nil {
 		fmt.Println(err)

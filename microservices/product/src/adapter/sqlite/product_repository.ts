@@ -19,8 +19,6 @@ class ProductRepositoryImpl implements ProductRepository {
                     resolve(row)
                 })
             })
-
-            console.log(products.map((product: any) => Product.fromJSON(product)));
             
             return products.map((product: any) => Product.fromJSON(product))
         } catch (error) {

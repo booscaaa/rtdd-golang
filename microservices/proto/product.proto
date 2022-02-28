@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package productservice;
+
+option go_package = "core/domain";
+
+service ProductService {
+    rpc Fetch (FetchRequest) returns (FetchResponse);
+}
+
+message FetchRequest {}
+
+message FetchResponse {
+    repeated Product Products = 1;
+}
+
+message Product {
+    int32 id = 1;
+    string name = 2;
+    float price = 3;
+}

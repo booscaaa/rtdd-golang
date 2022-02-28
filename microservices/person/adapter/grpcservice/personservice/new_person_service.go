@@ -20,15 +20,15 @@ func NewPersonService(usecase domain.PersonUseCase) domain.PersonServiceServer {
 
 func (service service) Fetch(
 	context context.Context,
-	request *domain.FetchRequest,
-) (*domain.FetchResponse, error) {
+	request *domain.FetchPersonRequest,
+) (*domain.FetchPersonResponse, error) {
 	people, err := service.usecase.Fetch()
 
 	if err != nil {
 		return nil, err
 	}
 
-	return &domain.FetchResponse{People: people}, nil
+	return &domain.FetchPersonResponse{People: people}, nil
 }
 
 func (service service) GetByID(

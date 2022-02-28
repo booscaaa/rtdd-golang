@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
+	"github.com/booscaaa/rtdd-golang/microservices/gateway/core/domain"
 )
 
 func (service service) Fetch(response http.ResponseWriter, request *http.Request) {
-	grpcReponse, err := service.grpc.Fetch(context.Background(), &domain.FetchRequest{})
+	grpcReponse, err := service.grpc.Fetch(context.Background(), &domain.FetchPersonRequest{})
 
 	if err != nil {
 		response.WriteHeader(http.StatusInternalServerError)

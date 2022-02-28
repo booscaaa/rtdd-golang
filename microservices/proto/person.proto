@@ -1,17 +1,17 @@
 syntax = "proto3";
 
-package productservice;
+package personservice;
 
-option go_package = "person/core/domain";
+option go_package = "core/domain";
 
 service PersonService {
-    rpc Fetch (FetchRequest) returns (FetchResponse);
+    rpc Fetch (FetchPersonRequest) returns (FetchPersonResponse);
     rpc GetByID (GetByIDRequest) returns (GetByIDResponse);
 }
 
-message FetchRequest {}
+message FetchPersonRequest {}
 
-message FetchResponse {
+message FetchPersonResponse {
     repeated Person People = 1;
 }
 

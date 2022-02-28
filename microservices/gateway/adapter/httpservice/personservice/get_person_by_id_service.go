@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
+	"github.com/booscaaa/rtdd-golang/microservices/gateway/core/domain"
 	"github.com/gorilla/mux"
 )
 

@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PersonServiceClient interface {
-	Fetch(ctx context.Context, in *FetchRequest, opts ...grpc.CallOption) (*FetchResponse, error)
+	Fetch(ctx context.Context, in *FetchPersonRequest, opts ...grpc.CallOption) (*FetchPersonResponse, error)
 	GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDResponse, error)
 }
 
@@ -34,9 +34,9 @@ func NewPersonServiceClient(cc grpc.ClientConnInterface) PersonServiceClient {
 	return &personServiceClient{cc}
 }
 
-func (c *personServiceClient) Fetch(ctx context.Context, in *FetchRequest, opts ...grpc.CallOption) (*FetchResponse, error) {
-	out := new(FetchResponse)
-	err := c.cc.Invoke(ctx, "/productservice.PersonService/Fetch", in, out, opts...)
+func (c *personServiceClient) Fetch(ctx context.Context, in *FetchPersonRequest, opts ...grpc.CallOption) (*FetchPersonResponse, error) {
+	out := new(FetchPersonResponse)
+	err := c.cc.Invoke(ctx, "/personservice.PersonService/Fetch", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *personServiceClient) Fetch(ctx context.Context, in *FetchRequest, opts 
 
 func (c *personServiceClient) GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDResponse, error) {
 	out := new(GetByIDResponse)
-	err := c.cc.Invoke(ctx, "/productservice.PersonService/GetByID", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/personservice.PersonService/GetByID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *personServiceClient) GetByID(ctx context.Context, in *GetByIDRequest, o
 // All implementations must embed UnimplementedPersonServiceServer
 // for forward compatibility
 type PersonServiceServer interface {
-	Fetch(context.Context, *FetchRequest) (*FetchResponse, error)
+	Fetch(context.Context, *FetchPersonRequest) (*FetchPersonResponse, error)
 	GetByID(context.Context, *GetByIDRequest) (*GetByIDResponse, error)
 	mustEmbedUnimplementedPersonServiceServer()
 }
@@ -65,7 +65,7 @@ type PersonServiceServer interface {
 type UnimplementedPersonServiceServer struct {
 }
 
-func (UnimplementedPersonServiceServer) Fetch(context.Context, *FetchRequest) (*FetchResponse, error) {
+func (UnimplementedPersonServiceServer) Fetch(context.Context, *FetchPersonRequest) (*FetchPersonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Fetch not implemented")
 }
 func (UnimplementedPersonServiceServer) GetByID(context.Context, *GetByIDRequest) (*GetByIDResponse, error) {
@@ -85,7 +85,7 @@ func RegisterPersonServiceServer(s grpc.ServiceRegistrar, srv PersonServiceServe
 }
 
 func _PersonService_Fetch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FetchRequest)
+	in := new(FetchPersonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -94,10 +94,10 @@ func _PersonService_Fetch_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/productservice.PersonService/Fetch",
+		FullMethod: "/personservice.PersonService/Fetch",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PersonServiceServer).Fetch(ctx, req.(*FetchRequest))
+		return srv.(PersonServiceServer).Fetch(ctx, req.(*FetchPersonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,7 +112,7 @@ func _PersonService_GetByID_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/productservice.PersonService/GetByID",
+		FullMethod: "/personservice.PersonService/GetByID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PersonServiceServer).GetByID(ctx, req.(*GetByIDRequest))
@@ -124,7 +124,7 @@ func _PersonService_GetByID_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PersonService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "productservice.PersonService",
+	ServiceName: "personservice.PersonService",
 	HandlerType: (*PersonServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

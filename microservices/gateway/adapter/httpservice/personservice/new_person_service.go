@@ -1,18 +1,17 @@
 package personservice
 
 import (
-	localDomain "github.com/booscaaa/rtdd-golang/microservices/gateway/core/domain"
-	personDomain "github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
+	"github.com/booscaaa/rtdd-golang/microservices/gateway/core/domain"
 	"google.golang.org/grpc"
 )
 
 type service struct {
-	grpc personDomain.PersonServiceClient
+	grpc domain.PersonServiceClient
 }
 
 // NewPersonService .
-func NewPersonService(conn *grpc.ClientConn) localDomain.PersonService {
+func NewPersonService(conn *grpc.ClientConn) domain.PersonService {
 	return &service{
-		grpc: personDomain.NewPersonServiceClient(conn),
+		grpc: domain.NewPersonServiceClient(conn),
 	}
 }

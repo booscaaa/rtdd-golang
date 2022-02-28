@@ -1,0 +1,51 @@
+version: '3.4'
+
+services:
+  gateway:
+    container_name: gateway
+    build:
+      context: "gateway"
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5000:5000
+    networks:
+      - dev-network
+    volumes:
+      - ./gateway/:/api
+    depends_on: 
+      - person
+      - product
+
+  person:
+    container_name: person
+    build:
+      context: "person"
+      dockerfile: Dockerfile.dev
+    ports:
+      - 1111
+    networks:
+      - dev-network
+    volumes:
+      - ./person/:/api
+
+  product:
+    container_name: product
+    image: node:16.14.0
+    working_dir: "/api"
+    command: /bin/bash -c "npm i && npm run dev"
+    ports:
+      - 2222
+    networks:
+      - dev-network
+    volumes: 
+      - ./product/:/api
+
+volumes:
+  pgdata:
+    driver: local
+  esdata:
+    driver: local
+
+networks:
+  dev-network:
+    driver: bridge

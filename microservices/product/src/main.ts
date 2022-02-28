@@ -23,7 +23,7 @@ const productServer = new ProductServiceImpl(productUseCase)
 
 server.addServiceTyped<IProductServiceServer>(ProductServiceService, productServer);
 
-server.bindAsync('localhost:2222', ServerCredentials.createInsecure(), (err: Error | null, bindPort: number) => {
+server.bindAsync('0.0.0.0:2222', ServerCredentials.createInsecure(), (err: Error | null, bindPort: number) => {
     if (err) {
         throw err;
     }

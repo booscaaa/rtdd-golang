@@ -3,3 +3,8 @@ product/package-lock.json
 product/product.db
 
 person/person.db
+person/go.sum
+person/tmp
+
+gateway/go.sum
+gateway/tmp

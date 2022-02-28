@@ -9,9 +9,9 @@ import (
 )
 
 func GetConnection() *sql.DB {
-	os.Remove("./person/person.db")
+	os.Remove("./person.db")
 
-	db, err := sql.Open("sqlite3", "./person/person.db")
+	db, err := sql.Open("sqlite3", "./person.db")
 
 	if err != nil {
 		log.Fatal(err)

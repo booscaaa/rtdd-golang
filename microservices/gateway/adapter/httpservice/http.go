@@ -12,15 +12,8 @@ import (
 
 // Run .
 func Run() {
-	connPerson, _ := grpc.Dial(
-		"localhost:1111",
-		grpc.WithInsecure(),
-	)
-
-	connProduct, _ := grpc.Dial(
-		"localhost:2222",
-		grpc.WithInsecure(),
-	)
+	connPerson, _ := grpc.Dial("person:1111", grpc.WithInsecure())
+	connProduct, _ := grpc.Dial("product:2222", grpc.WithInsecure())
 
 	personService := personservice.NewPersonService(connPerson)
 	productService := productservice.NewProductService(connProduct)

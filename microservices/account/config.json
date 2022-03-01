@@ -1,0 +1,11 @@
+{
+    "database": {
+      "url": "postgres://postgres:postgres@postgres:5432/authenticator"
+    },
+    "hash": {
+      "bcrypt": "banana123"
+    },
+    "server": {
+      "port": "3333"
+    }
+  }

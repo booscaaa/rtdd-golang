@@ -3,7 +3,7 @@ package personservice
 import (
 	"context"
 
-	"github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
+	"github.com/booscaaa/rtdd-golang/microservices/authenticator/core/domain"
 )
 
 type service struct {

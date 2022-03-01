@@ -1,6 +1,6 @@
 package personusecase
 
-import "github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
+import "github.com/booscaaa/rtdd-golang/microservices/authenticator/core/domain"
 
 type usecase struct {
 	repository domain.PersonRepository

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package accountservice;
+
+option go_package = "core/domain";
+
+service AccountService {
+    rpc Fetch (FetchAccountRequest) returns (AccountPaginationResponse);
+    rpc Login (LoginAccountRequest) returns (LoginAccountResponse);
+}
+
+message Account {
+    int32 id = 1;
+    string login = 2;
+    string name = 3;
+    string password = 4;
+    string email = 5;
+    google.protobuf.Timestamp createdDate = 6;
+    int32 accountGroupID = 7;
+    bool active = 8;
+}
+
+message LoginAccountRequest {
+    string user = 1;
+    string password = 2;
+}
+
+message LoginAccountResponse {
+    string token = 1;
+    string refresh = 2;
+    string type = 3;
+}
+
+message FetchAccountRequest {}
+
+message AccountPaginationResponse {
+    repeated Account Items = 1;
+    int32 total = 2;
+}

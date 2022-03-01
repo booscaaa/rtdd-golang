@@ -2,25 +2,25 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net"
 
-	"github.com/booscaaa/rtdd-golang/microservices/person/adapter/grpcservice/personservice"
-	"github.com/booscaaa/rtdd-golang/microservices/person/adapter/sqlite"
-	"github.com/booscaaa/rtdd-golang/microservices/person/adapter/sqlite/personrepository"
-	"github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
-	"github.com/booscaaa/rtdd-golang/microservices/person/core/personusecase"
+	"github.com/booscaaa/rtdd-golang/microservices/authenticator/adapter/grpcservice/personservice"
+	"github.com/booscaaa/rtdd-golang/microservices/authenticator/adapter/mongodb"
+	"github.com/booscaaa/rtdd-golang/microservices/authenticator/adapter/mongodb/personrepository"
+	"github.com/booscaaa/rtdd-golang/microservices/authenticator/core/domain"
+	"github.com/booscaaa/rtdd-golang/microservices/authenticator/core/personusecase"
 	"google.golang.org/grpc"
 )
 
 func main() {
 	lis, err := net.Listen("tcp", ":1111")
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 	defer lis.Close()
 
-	db := sqlite.GetConnection()
-	sqlite.ConfigConnection(db)
+	db := mongodb.GetConnection()
 
 	personRepository := personrepository.NewPersonRepository(db)
 	personUseCase := personusecase.NewPersonUseCase(personRepository)

@@ -1,6 +1,6 @@
 package personusecase
 
-import "github.com/booscaaa/rtdd-golang/microservices/person/core/domain"
+import "github.com/booscaaa/rtdd-golang/microservices/authenticator/core/domain"
 
 func (usecase usecase) Fetch() ([]*domain.Person, error) {
 	people, err := usecase.repository.Fetch()
